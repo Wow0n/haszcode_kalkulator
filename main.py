@@ -1,3 +1,5 @@
+#uvicorn main:app --reload
+
 from enum import Enum
 from fastapi import FastAPI
 
@@ -33,4 +35,4 @@ def calculator(operacja: op_name, x: int, y: int):
         return pow(x, y)
 
     if operacja == operacja.pierwistek:
-        return x**(1/float(y))
+        return x ** (1 / float(y))

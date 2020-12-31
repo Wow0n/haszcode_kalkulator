@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c3d3fbd-cde6-4879-90bc-141acf640110" name="Default Changelist" comment="Create .gitignore" />
+    <list default="true" id="1c3d3fbd-cde6-4879-90bc-141acf640110" name="Default Changelist" comment="Create .gitignore">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,6 +70,7 @@
       <workItem from="1609408773558" duration="6786000" />
       <workItem from="1609416737829" duration="98000" />
       <workItem from="1609422081719" duration="1201000" />
+      <workItem from="1609423591054" duration="301000" />
     </task>
     <task id="LOCAL-00001" summary="Create .gitignore">
       <created>1609423236395</created>
@@ -92,6 +95,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create .gitignore" />
