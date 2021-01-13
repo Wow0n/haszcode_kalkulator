@@ -3,36 +3,36 @@ from fastapi import FastAPI
 
 
 class op_name(str, Enum):
-    suma = "suma"
-    odejmowanie = "odejmowanie"
-    mnozenie = "mnozenie"
-    dzielenie = "dzielenie"
-    potegowanie = "potegowanie"
-    pierwistek = "pierwiastek"
+    sum = "suma"
+    sub = "odejmowanie"
+    multi = "mnozenie"
+    div = "dzielenie"
+    power = "potegowanie"
+    root = "pierwiastek"
 
 
 app = FastAPI()
 
 
 @app.get("/calculator")
-def calculator(operacja: op_name, x: int, y: int):
-    if operacja == operacja.suma:
+def calculator(operation: op_name, x: int, y: int):
+    if operation == operation.sum:
         return x + y
 
-    elif operacja == operacja.odejmowanie:
+    elif operation == operation.subtraction:
         return x - y
 
-    elif operacja == operacja.mnozenie:
+    elif operation == operation.multi:
         return x * y
 
-    elif operacja == operacja.dzielenie:
+    elif operation == operation.div:
         if y != 0:
             return x / y
         else:
             return "Nie dziel cholero nigdy przez zero"
 
-    elif operacja == operacja.potegowanie:
+    elif operation == operation.power:
         return pow(x, y)
 
-    elif operacja == operacja.pierwistek:
+    elif operation == operation.root:
         return x ** (1 / float(y))
