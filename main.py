@@ -15,7 +15,7 @@ class op_name(str, Enum):
 app = FastAPI()
 
 
-@app.get("/calculator", status_code= 201)
+@app.get("/calculator", status_code=201)
 def calculator(operation: op_name, x: int, y: int, response: Response):
     if operation == operation.sum:
         return x + y
@@ -37,11 +37,11 @@ def calculator(operation: op_name, x: int, y: int, response: Response):
         return pow(x, y)
 
     elif operation == operation.root:
-        if y > 1:
+        if y > 1 and x > 0:
             return x ** (1 / float(y))
         else:
             response.status_code = 400
-            return "Error: y have to be equal at least 2 to make root calculation"
+            return "Error: y must be > 2 and x > 0 to make root calculation"
 
 
 if __name__ == "__main__":
