@@ -30,7 +30,7 @@ def calculator(operation: op_name, x: int, y: int, response: Response):
         if y != 0:
             return x / y
         else:
-            response.status_code = 400
+            response.status_code = 500
             return "Error: dividing by 0 is prohibited"
 
     elif operation == operation.power:
@@ -40,7 +40,7 @@ def calculator(operation: op_name, x: int, y: int, response: Response):
         if y > 1 and x > 0:
             return x ** (1 / float(y))
         else:
-            response.status_code = 400
+            response.status_code = 500
             return "Error: y must be > 2 and x > 0 to make root calculation"
 
 
