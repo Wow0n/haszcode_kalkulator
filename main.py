@@ -15,7 +15,7 @@ class op_name(str, Enum):
 app = FastAPI()
 
 
-@app.get("/calculator", status_code=201)
+@app.post("/calculator", status_code=200)
 def calculator(operation: op_name, x: int, y: int, response: Response):
     if operation == operation.sum:
         return x + y
