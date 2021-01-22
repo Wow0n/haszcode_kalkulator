@@ -1,9 +1,10 @@
 import uvicorn
 from enum import Enum
 from fastapi import FastAPI, Response, status
+import mysql.connector
 
 
-class op_name(str, Enum):
+class OpName(str, Enum):
     sum = "suma"
     sub = "odejmowanie"
     multi = "mnozenie"
@@ -14,31 +15,66 @@ class op_name(str, Enum):
 
 app = FastAPI()
 
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="fastapi_calculator"
+)
+
+
+def db(result):
+    mycursor = mydb.cursor()
+    history = ("History of results:", )
+
+    query = ("INSERT INTO history (results) VALUES (%(result)s)")
+    data = {'result': result}
+    mycursor.execute(query, data)
+
+    mydb.commit()
+
+    mycursor.execute("SELECT results FROM history ORDER BY id DESC")
+    myresult = mycursor.fetchall()
+
+    for x in myresult:
+        history += x
+
+    return history
+
+    mydb.close()
+
 
 @app.post("/calculator", status_code=200)
-def calculator(operation: op_name, x: int, y: int, response: Response):
+def calculator(operation: OpName, x: int, y: int, response: Response):
     if operation == operation.sum:
-        return x + y
+        result = x + y
+        return result, db(result)
+
 
     elif operation == operation.sub:
-        return x - y
+        result = x - y
+        return result, db(result)
 
     elif operation == operation.multi:
-        return x * y
+        result = x * y
+        return result, db(result)
 
     elif operation == operation.div:
         if y != 0:
-            return x / y
+            result = x / y
+            return result, db(result)
         else:
             response.status_code = 400
             return "Error: dividing by 0 is prohibited"
 
     elif operation == operation.power:
-        return pow(x, y)
+        result = pow(x, y)
+        return result, db(result)
 
     elif operation == operation.root:
         if y > 1 and x > 0:
-            return x ** (1 / float(y))
+            result = x ** (1 / float(y))
+            return result, db(result)
         else:
             response.status_code = 400
             return "Error: y must be > 2 and x > 0 to make root calculation"
