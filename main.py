@@ -1,7 +1,7 @@
 import uvicorn
 from enum import Enum
 from fastapi import FastAPI, Response, status
-import mysql.connector
+import psycopg2
 
 
 class OpName(str, Enum):
@@ -15,10 +15,11 @@ class OpName(str, Enum):
 
 app = FastAPI()
 
-mydb = mysql.connector.connect(
+mydb = psycopg2.connect(
     host="localhost",
-    user="root",
-    password="",
+    port="5432",
+    user="postgres",
+    password="password",
     database="fastapi_calculator"
 )
 
